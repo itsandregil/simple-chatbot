@@ -2,7 +2,7 @@ import gradio as gr
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableSerializable
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 
 
 # TODO: Include memory
@@ -16,7 +16,7 @@ def __setup_chain() -> RunnableSerializable:
         Pregunta: {question}
         """
     )
-    llm = ChatOllama(model="llama3.2", temperature=0)
+    llm = ChatOpenAI(model="gpt-4o-mini-2024-07-18")
 
     # Create chain
     qa_chain = prompt_template | llm | StrOutputParser()
